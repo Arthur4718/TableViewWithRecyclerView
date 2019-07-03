@@ -10,6 +10,7 @@ import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.HorizontalScrollView;
+import android.widget.ScrollView;
 
 import com.bullseyedevs.tableview.adapter.ClubAdapter;
 import com.bullseyedevs.tableview.model.Club;
@@ -22,12 +23,14 @@ public class MainActivity extends AppCompatActivity
 {
 
     int scrollX = 0;
+    int scrollY = 0;
 
     List<Club> clubList = new ArrayList<>();
 
     RecyclerView rvClub;
 
     HorizontalScrollView headerScroll;
+    ScrollView fixedCollumScroll;
 
     SearchView searchView;
 
@@ -53,8 +56,9 @@ public class MainActivity extends AppCompatActivity
                 super.onScrolled(recyclerView, dx, dy);
 
                 scrollX += dx;
-
+                scrollY += dy;
                 headerScroll.scrollTo(scrollX, 0);
+                fixedCollumScroll.scrollTo(0 , scrollY);
             }
 
             @Override
@@ -131,6 +135,7 @@ public class MainActivity extends AppCompatActivity
     {
         rvClub = findViewById(R.id.rvClub);
         headerScroll = findViewById(R.id.headerScroll);
+        fixedCollumScroll = findViewById(R.id.fixedCollumScroll);
     }
 
     /**
